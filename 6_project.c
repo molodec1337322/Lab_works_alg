@@ -13,35 +13,28 @@ void fillArr(int* arr, int size)
 	for (int i = 0; i < size; i++) arr[i] = rand() % 100;
 }
 
-int* gnomeSort(int* arr, int size)
+void gnomeSort(int* arr, int size)
 {
-	int i = 1;
-	int j = 2;
 	int temp;
-	while (i < size)
+	for (int i = 0; i < size;)
 	{
-		if (arr[i - 1] > arr[i]) i = j++; // < для сортировки по возрастанию
+		if (arr[i] >= arr[i - 1] || i == 0) i++;
 		else
 		{
-			temp = arr[i - 1];
-			arr[i - 1] = arr[i];
-			arr[i] = temp;
+			temp = arr[i];
+			arr[i] = arr[i - 1];
+			arr[i - 1] = temp;
 			i--;
-			if (i == 0)
-			{
-				i = j++;
-			}
 		}
-		return arr;
 	}
 }
 
 int main()
 {
-	int* arr = malloc(sizeof(int) * 30);
+	int arr[30];
 	fillArr(arr, 30);
 	showArr(arr, 30);
-	arr = gnomeSort(arr, 30);
+	gnomeSort(arr, 30);
 	showArr(arr, 30);
 	return 0;
 }
