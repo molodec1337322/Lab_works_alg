@@ -1,5 +1,34 @@
 #include <stdio.h>
 
+void quikSort(int arr[], int first, int last)
+{
+	if (first < last)
+	{
+		int pivot = arr[(first + last) / 2];
+		int left = first;
+		int right = last;
+		int temp;
+
+		do {
+
+			while (arr[left] < pivot) left++;
+			while (arr[right] > pivot) right--;
+
+			if (left <= right)
+			{
+				temp = arr[left];
+				arr[left] = arr[right];
+				arr[right] = temp;
+				left++;
+				right--;
+			}
+		} while (left <= right);
+
+		quikSort(arr, first, right);
+		quikSort(arr, last, left);
+	}
+}
+
 int main()
 {
 	int arr[5] = { 1, 7, 5, 3, 9 };
@@ -109,7 +138,23 @@ int main()
 	}
 	*/
 
+	/*
+	i = 1, j = 2;
+	while (i < N)
+	{
+		if (arr[i - 1] > arr[i])
+		{
+			temp = arr[i - 1];
+			arr[i - 1] = arr[i];
+			arr[i] = temp;
+			i--;
+			if (i > 0) continue;
+		}
+		i = j++;
+	}
+	*/
 
+	quikSort(arr, 0, N - 1);
 
 	for (int i = 0; i < N; i++)
 	printf_s("%d ", arr[i]);
