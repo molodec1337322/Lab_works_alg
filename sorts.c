@@ -85,7 +85,7 @@ int main()
 
 	for (i = 1; i < N; i++)
 	{
-		for (j = i, temp = arr[j]; j > 0 && arr[j - 1] > temp; j--)
+		for (j = i, temp = arr[i]; j > 0 && arr[j - 1] > temp; j--)
 		{
 			arr[j] = arr[j - 1];
 		}
